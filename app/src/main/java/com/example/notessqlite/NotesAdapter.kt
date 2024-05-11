@@ -7,16 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class NotesAdapter (private var notes:List<Note>,context: Context):
     RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
 
+private val db:NotesDatabaseHelper= NotesDatabaseHelper(context)
 
     class NoteViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val titleTextView: TextView =itemView.findViewById(R.id.titleTextView)
         val contentTextView: TextView =itemView.findViewById(R.id.contentTextView)
-        val updateButton: ImageView=itemView.findViewById(R.id.updateSaveButton)
+        val updateButton: ImageView=itemView.findViewById(R.id.updateButton)
+        val deleteButton: ImageView=itemView.findViewById(R.id.deleteButton)
 
 
     }
@@ -41,9 +44,15 @@ class NotesAdapter (private var notes:List<Note>,context: Context):
 
 
         holder.updateButton.setOnClickListener {
-            val intent = Intent(holder.itemView.context, UpdateActivity::class.java)
+            val intent = Intent(holder.itemView.context, UpdateNoteActivity::class.java)
             intent.putExtra("note_id", note.id) // Corrected putExtra usage
             holder.itemView.context.startActivity(intent) // Corrected startActivity usage
+        }
+
+        holder.deleteButton.setOnClickListener{
+            db.deleteNote(note.id)
+            refreshData(db.getAllNotes())
+            Toast.makeText(holder.itemView.context,"Notes Deleted!",Toast.LENGTH_SHORT).show()
         }
     }
     fun refreshData(newNotes:List<Note>){
