@@ -27,11 +27,11 @@ class UpdateNoteActivity : AppCompatActivity() {
         }
         val note= db.getNoteById(noteId)
         binding.updateTitleEditText.setText(note.title)
-        binding.updateTitleEditText.setText(note.content)
+        binding.updateContentEditText.setText(note.content)
 
         binding.updateSaveButton.setOnClickListener{
             val newTitle=binding.updateTitleEditText.text.toString()
-            val newContent=binding.updateTitleEditText.text.toString()
+            val newContent=binding.updateContentEditText.text.toString()
             val updatedNote=Note(noteId,newTitle,newContent)
             db.updateNote(updatedNote)
             finish()

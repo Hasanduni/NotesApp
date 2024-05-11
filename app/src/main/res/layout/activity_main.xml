@@ -21,11 +21,11 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notesRecylerView"
+        android:id="@+id/notesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
-        android:padding="160dp"/>
+        android:padding="16dp"/>
 
     />
 

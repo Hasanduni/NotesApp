@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
         db= NotesDatabaseHelper(this)
         notesAdapter= NotesAdapter(db.getAllNotes(),this)
 
-        binding.notesRecylerView.layoutManager= LinearLayoutManager(this)
-        binding.notesRecylerView.adapter=notesAdapter
+        binding.notesRecyclerView.layoutManager= LinearLayoutManager(this)
+        binding.notesRecyclerView.adapter=notesAdapter
 
         binding.addButton.setOnClickListener{
             val intent=Intent(this,AddNoteActivity::class.java)

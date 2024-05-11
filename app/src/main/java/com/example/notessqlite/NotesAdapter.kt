@@ -44,8 +44,12 @@ private val db:NotesDatabaseHelper= NotesDatabaseHelper(context)
 
 
         holder.updateButton.setOnClickListener {
-            val intent = Intent(holder.itemView.context, UpdateNoteActivity::class.java)
-            intent.putExtra("note_id", note.id) // Corrected putExtra usage
+            val intent = Intent(holder.itemView.context, UpdateNoteActivity::class.java).apply {
+
+                putExtra("note_id",note.id)
+            }
+
+            //intent.putExtra("note_id", note.id) // Corrected putExtra usage
             holder.itemView.context.startActivity(intent) // Corrected startActivity usage
         }
 
